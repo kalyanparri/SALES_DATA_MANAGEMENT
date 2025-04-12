@@ -1,0 +1,40 @@
+{
+  "name": "sdm",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "start:dev": "nodemon src/server.js"
+  },
+  "nodemonConfig": {
+    "verbose": true,
+    "watch": [
+      "src/server",
+      "src/"
+    ],
+    "ext": "js",
+    "ignore": [
+      "*.test.js"
+    ],
+    "delay": "3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kalyanparri/SALES_DATA_MANAGEMENT.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kalyanparri/SALES_DATA_MANAGEMENT/issues"
+  },
+  "homepage": "https://github.com/kalyanparri/SALES_DATA_MANAGEMENT#readme",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
