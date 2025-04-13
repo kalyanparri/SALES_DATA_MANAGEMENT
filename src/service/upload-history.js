@@ -3,8 +3,7 @@ const UploadHistoryModel = require('../db/models/upload-history');
 const saveUploadHistory = async(data) =>{
     const uploadHistory = new UploadHistoryModel(data);
     try {
-        const response = await uploadHistory.save();
-        return response;
+        return await uploadHistory.save(data);
     } catch (error) {
         throw new Error(error?.message);
     }
@@ -12,11 +11,18 @@ const saveUploadHistory = async(data) =>{
 
 const fetchUploadHistory = async () =>{
     try {
-        const uploadHistory = await UploadHistoryModel.find({});
-        return uploadHistory;
+        return await UploadHistoryModel.find({});
     } catch (error) {
         throw new Error(error?.message);
     }
 }
 
-module.exports = { saveUploadHistory, fetchUploadHistory};
+const clearUploadHistory = async () =>{
+    try {
+        return await UploadHistoryModel.deleteMany({});
+    } catch (error) {
+        throw new Error(error?.message);
+    }
+}
+
+module.exports = { saveUploadHistory, fetchUploadHistory, clearUploadHistory};

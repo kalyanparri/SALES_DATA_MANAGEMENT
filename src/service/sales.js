@@ -1,10 +1,8 @@
 const SalesModel = require('../db/models/sales.js');
 
 const saveSalesData = async(data) =>{
-    const sales = new SalesModel(data);
     try {
-        const response = await sales.save();
-        return response;
+        return await SalesModel.insertMany(data);
     } catch (error) {
         throw new Error(error?.message);
     }
@@ -12,11 +10,18 @@ const saveSalesData = async(data) =>{
 
 const fetchSalesData = async () =>{
     try {
-        const sales = await SalesModel.find({});
-        return sales;
+        return await SalesModel.find({});
     } catch (error) {
         throw new Error(error?.message);
     }
 }
 
-module.exports = { saveSalesData, fetchSalesData};
+const clearSalesData = async () =>{
+    try {
+        return await SalesModel.deleteMany({});
+    } catch (error) {
+        throw new Error(error?.message);
+    }
+}
+
+module.exports = { saveSalesData, fetchSalesData, clearSalesData};

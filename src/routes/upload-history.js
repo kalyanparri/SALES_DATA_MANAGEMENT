@@ -1,14 +1,9 @@
 const router = require('express').Router();
-const { saveUploadHistory, fetchUploadHistory } = require('../service/upload-history.js');
+const { saveUploadHistory, fetchUploadHistory, clearUploadHistory } = require('../service/upload-history.js');
 
+// we can use this API externally
 router.post('/', async(req, res) => {
-
-    let data = {
-        file_name: '1a.csv',
-        upload_date: Date.now(),
-        processed_rows: 5
-    }
-    let response = await saveUploadHistory(data);
+    let response = await saveUploadHistory(req?.body);
     if(response?._id){
         res.send(response);
     }
@@ -16,6 +11,11 @@ router.post('/', async(req, res) => {
 
 router.get('/', async(req, res) => {
     let response = await fetchUploadHistory();
+    res.send(response);
+})
+
+router.delete('/', async(req, res) => {
+    let response = await clearUploadHistory();
     res.send(response);
 })
 

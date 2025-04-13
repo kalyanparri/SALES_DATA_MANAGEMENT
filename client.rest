@@ -9,6 +9,9 @@ Content-Type: : application/json
 }
 
 ###
+DELETE  http://localhost:3000/sales/
+
+###
 GET http://localhost:3000/upload-history/
 
 ###
@@ -18,3 +21,7 @@ Content-Type: : application/json
 {
     "data":"name"
 }
+
+
+###
+DELETE  http://localhost:3000/upload-history/

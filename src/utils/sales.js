@@ -1,15 +1,9 @@
-
-const readFileData = () =>{
-    let data =  {
-        transaction_id: 'TX109',
-        customer_name: 'John Doe',
-        product: 'MacBook Pro',
-        quantity: 3,
-        price: '300 USD',
-        date: Date.now()
-    }
-
-    return data;
+const lowercaseKeys = (arr) => {
+    return arr.map((object)=>{
+        return Object.fromEntries(
+            Object.entries(object).map(([key, value]) => [key.toLowerCase().replace(' ', '_'), value])
+        );
+    });
 }
 
-module.exports = { readFileData }
+module.exports = { lowercaseKeys }
