@@ -1,0 +1,20 @@
+GET http://localhost:3000/sales/
+
+###
+POST http://localhost:3000/sales/file
+Content-Type: : application/json
+
+{
+    "data":"name"
+}
+
+###
+GET http://localhost:3000/upload-history/
+
+###
+POST http://localhost:3000/upload-history/
+Content-Type: : application/json
+
+{
+    "data":"name"
+}
