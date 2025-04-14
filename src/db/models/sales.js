@@ -17,6 +17,9 @@ const SalesSchema = new mongoose.Schema({
     price:{
         type: String,
     },
+    total_sale:{
+        type: String,
+    },
     date: { 
         type: String
     },
