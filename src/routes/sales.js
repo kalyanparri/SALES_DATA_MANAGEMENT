@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { saveSalesData, fetchSalesData, clearSalesData} = require('../service/sales.js');
-const { lowercaseKeys } = require('../utils/sales.js');
+const { lowercaseKeys, getFormattedDate } = require('../utils/common.js');
 const csv = require("@fast-csv/parse");
 const streamifier = require("streamifier");
 const multer = require('multer');
@@ -23,7 +23,7 @@ router.post('/', upload, async(req, res) => {
             const response = await saveSalesData(dataFromRows);
             const fileInfo = {
                 file_name: req.file.originalname,
-                upload_date: Date.now(),
+                upload_date: getFormattedDate(),
                 processed_rows: response?.length
             }
             await saveUploadHistory(fileInfo);

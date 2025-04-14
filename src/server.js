@@ -8,18 +8,14 @@ const { connectDB } = require('./db/db.js');
 
 const app = express();
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.urlencoded({ extended: true }));
 const port = process.env.PORT || 3000;
 
 (()=>{
   connectDB();
 })();
-
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
 
 app.use('/sales', salesRouter);
 app.use('/upload-history', uploadHistoryRouter);

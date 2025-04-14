@@ -6,8 +6,7 @@ const UploadHistorySchema = new mongoose.Schema({
         required: true,
     },
     upload_date: {
-        type: Date, 
-        default: Date.now
+        type: String, 
     },
     processed_rows:{
         type: Number,
