@@ -6,6 +6,26 @@ const lowercaseKeys = (arr) => {
     });
 }
 
+const addTotalSale = (arr) =>{
+
+    return arr.map((object) => {
+        return {
+            ...object,
+            total_sale: calculateTotalSale(object?.quantity, object?.price)
+        }
+    })
+}
+
+const calculateTotalSale = (quantity, price) =>{
+
+    const arr = price?.split(' ');
+    if(quantity && arr.length === 2){
+        const sale = quantity * arr[0];
+        return `${sale} ${arr[1]}`;
+    }
+    return '0';
+}
+
 const getFormattedDate = () => {
     let date = new Date();
     let year = date.getFullYear();
@@ -15,4 +35,4 @@ const getFormattedDate = () => {
 }
 
 
-module.exports = { lowercaseKeys, getFormattedDate }
+module.exports = { lowercaseKeys, getFormattedDate, addTotalSale }

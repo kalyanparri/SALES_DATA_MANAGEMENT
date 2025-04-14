@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { saveSalesData, fetchSalesData, clearSalesData} = require('../service/sales.js');
-const { lowercaseKeys, getFormattedDate } = require('../utils/common.js');
+const { lowercaseKeys, getFormattedDate, addTotalSale } = require('../utils/common.js');
 const csv = require("@fast-csv/parse");
 const streamifier = require("streamifier");
 const multer = require('multer');
@@ -20,6 +20,7 @@ router.post('/', upload, async(req, res) => {
     .on("end", async (rowCount) => {
         try {
             dataFromRows = await lowercaseKeys(dataFromRows);
+            dataFromRows = await addTotalSale(dataFromRows);
             const response = await saveSalesData(dataFromRows);
             const fileInfo = {
                 file_name: req.file.originalname,
