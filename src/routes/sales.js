@@ -6,6 +6,7 @@ const streamifier = require("streamifier");
 const multer = require('multer');
 const upload = multer().single("file");
 const { saveUploadHistory } = require('../service/upload-history.js');
+const { FILE_UPLOAD_SUCCESS, FILE_UPLOAD_FAIL } = require('../utils/constants.js');
 
 router.post('/', upload, async(req, res) => {
 
@@ -28,9 +29,9 @@ router.post('/', upload, async(req, res) => {
                 processed_rows: response?.length
             }
             await saveUploadHistory(fileInfo);
-            res.status(200).json({ rows_inserted: response?.length, message:"File uploaded successfully"});
+            res.status(200).json({ rows_inserted: response?.length, message: FILE_UPLOAD_SUCCESS});
         } catch (error) {
-            res.status(400).json({ error});
+            res.status(400).json({message: FILE_UPLOAD_FAIL});
         }
     });
 })
