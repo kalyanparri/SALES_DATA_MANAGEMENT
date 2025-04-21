@@ -1,8 +1,8 @@
 ###
-GET http://localhost:3000/sales/
+GET http://localhost:4000/sales/
 
 ###
-POST http://localhost:3000/sales/file
+POST http://localhost:4000/sales/file
 Content-Type: : application/json
 
 {
@@ -10,13 +10,13 @@ Content-Type: : application/json
 }
 
 ###
-DELETE  http://localhost:3000/sales/
+DELETE  http://localhost:4000/sales/
 
 ###
-GET http://localhost:3000/upload-history/
+GET http://localhost:4000/upload-history/
 
 ###
-POST http://localhost:3000/upload-history/
+POST http://localhost:4000/upload-history/
 Content-Type: : application/json
 
 {
@@ -27,4 +27,4 @@ Content-Type: : application/json
 
 
 ###
-DELETE  http://localhost:3000/upload-history/
+DELETE  http://localhost:4000/upload-history/
