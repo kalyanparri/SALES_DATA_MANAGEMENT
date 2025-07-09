@@ -2,9 +2,10 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 const bodyParser = require("body-parser");
-const salesRouter = require('./routes/sales.js');
-const uploadHistoryRouter = require('./routes/upload-history.js');
 const { connectDB } = require('./db/db.js');
+const apiRouter = require('./routes/api.js');
+const replicaApp = process.env.APP_NAME;
+const apiRoot = '/api';
 
 const app = express();
 app.use(cors());
@@ -17,9 +18,11 @@ const port = process.env.PORT || 3000;
   connectDB();
 })();
 
-app.use('/sales', salesRouter);
-app.use('/upload-history', uploadHistoryRouter);
+app.use(apiRoot, (req, res, next)=> {
+  console.log(`${replicaApp} server instance responded`);
+  next();
+}, apiRouter);
 
 app.listen(port, ()=>{
-    console.info(`server running on port ${port}`);
+    console.info(`server ${replicaApp} instance running on port ${port}`);
 })
